@@ -14,8 +14,11 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: python -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - mbirtorch-hsnt = mbirtorch.hsnt.cli:main
 
 requirements:
   host:
@@ -38,7 +41,6 @@ requirements:
     - opencv
     - olefile
     - gdown
-    - scikit-learn
     - psutil
 
 tests:
@@ -51,6 +53,8 @@ tests:
       python_version:
         - ${{ python_min }}.*
         - "*"
+  - script:
+      - mbirtorch-hsnt --help
 
 about:
   homepage: https://github.com/cabouman/mbirtorch
